@@ -1,0 +1,2 @@
+include ':app', ':cjson', ':chttp'
+rootProject.name='CTools'
