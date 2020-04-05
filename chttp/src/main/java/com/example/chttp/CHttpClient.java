@@ -21,6 +21,7 @@ public class CHttpClient {
 
     CHttpClient() {
         executorService = Executors.newCachedThreadPool();
+        executed = false;
     }
 
     void newCall(final Request request, final CallBack callBack) {
@@ -67,7 +68,6 @@ public class CHttpClient {
                     if (connection != null) {
                         connection.disconnect();
                     }
-                    executed = false;
                 }
             }
         });
@@ -85,6 +85,7 @@ public class CHttpClient {
             if (!executed) {
                 executed = true;
                 executorService.execute(thread);
+                executed = false;
             }
         }
     }

@@ -3,6 +3,7 @@ package com.example.cflowlayout;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
@@ -18,6 +19,8 @@ import java.util.List;
  * Created by dr-chene on @date 2020/4/4
  */
 public class CFlowLayout extends FrameLayout {
+
+    public static final String TAG = "CFlowLayout";
 
     private static final int H_DISTANCE = 20;
     private static final int V_DISTANCE = 20;
@@ -89,6 +92,7 @@ public class CFlowLayout extends FrameLayout {
             View child = getChildAt(i);
             int childrenWidth = child.getWidth();
             int childrenHeight = child.getHeight();
+            Log.d(TAG, "onLayout: childrenHeight: " + childrenHeight);
             if (childrenWidth + disWidth > width) {
                 row++;
                 disWidth = H_DISTANCE;
@@ -100,4 +104,45 @@ public class CFlowLayout extends FrameLayout {
             disWidth += (childrenWidth + H_DISTANCE);
         }
     }
+
+    
+//    @Override
+//    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+//        super.onMeasure(widthMeasureSpec,heightMeasureSpec);
+//        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+//        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+//        int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+//        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+//
+//        int width = 0;
+//        int height = 0;
+//
+//        int lineWidth = 0;
+//        int lineHeight = 0;
+//
+//        int count = getChildCount();
+//
+//        for (int i = 0; i < count; i++) {
+//            View child = getChildAt(i);
+//            measureChild(child, widthMeasureSpec, heightMeasureSpec);
+//            MarginLayoutParams lp = (MarginLayoutParams) child.getLayoutParams();
+//            int childWidth = child.getMeasuredWidth() + lp.leftMargin + lp.rightMargin;
+//            int childHeight = child.getMeasuredHeight() + lp.topMargin + lp.bottomMargin;
+//            if (lineWidth + childWidth > widthSize - getPaddingLeft() - getPaddingRight()) {
+//                width = Math.max(width, lineWidth);
+//                lineWidth = childWidth;
+//                height += lineHeight;
+//                lineHeight = childHeight;
+//            } else {
+//                lineWidth += childWidth;
+//                lineHeight = Math.max(lineHeight,childHeight);
+//            }
+//            if (i == count - 1) {
+//                width = Math.max(lineWidth,width);
+//                height += lineHeight;
+//            }
+//        }
+//        setMeasuredDimension( widthMode == MeasureSpec.EXACTLY ? widthSize : width + getPaddingLeft() + getPaddingRight(),
+//                heightMode == MeasureSpec.EXACTLY ? heightSize : height + getPaddingTop() + getPaddingBottom());
+//    }
 }

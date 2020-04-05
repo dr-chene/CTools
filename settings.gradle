@@ -1,2 +1,2 @@
-include ':app', ':cjson', ':chttp', ':cflowlayout', ':csearchview'
+include ':app', ':cjson', ':chttp', ':cflowlayout', ':searchview', ':flowlayout'
 rootProject.name='CTools'
